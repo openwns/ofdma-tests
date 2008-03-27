@@ -3,7 +3,8 @@ random.seed(42)
 import wns.WNS
 import wns.Node
 import rise.Mobility
-import winprost.support.Transceiver
+import ofdmaphy.Transmitter
+import ofdmaphy.Receiver
 import ofdmaphy.Station
 import ofdmaphy.OFDMAPhy
 
@@ -43,12 +44,10 @@ myShadowing = scenario.getShadowing(scenario = ofdmaPhySystem.Scenario,
                                     wallAttenuation = 11.8,
                                     smoothingSteps = 10)
 
+
 # inject shadowing model into propagation config
-winprost.support.Transceiver.Propagation.ap2ap.shadowing = myShadowing
-winprost.support.Transceiver.Propagation.ap2frs.shadowing = myShadowing
-winprost.support.Transceiver.Propagation.ap2ut.shadowing = myShadowing
-winprost.support.Transceiver.Propagation.frs2ut.shadowing = myShadowing
-winprost.support.Transceiver.Propagation.ut2ut.shadowing = myShadowing
+id = rise.scenario.Propagation.DropInPropagation.getInstance().findId("DropIn")
+rise.scenario.Propagation.DropInPropagation.getInstance().getPair(id, id).shadowing = myShadowing
 
 # Construct simple Sender Node
 class BS(wns.Node.Node):
@@ -61,7 +60,7 @@ class BS(wns.Node.Node):
                                                 "Mobility Component",
                                                 mobility)
         self.mobility.mobility.logger.enabled=False
-        self.sender = ofdmaphy.Station.Sender(self, name, [winprost.support.Transceiver.APTransmitter()])
+        self.sender = ofdmaphy.Station.Sender(self, name, [ofdmaphy.Transmitter.TransmitterDropIn()])
         self.sender.txPower = Config.bsPowerPerSubBand
 
 
@@ -76,7 +75,7 @@ class MS(wns.Node.Node):
                                                 "Mobility Component",
                                                 mobility)
         self.mobility.mobility.logger.enabled=False
-        self.scanner = ofdmaphy.Station.Scanner(self, name, [winprost.support.Transceiver.UTReceiver()])
+        self.scanner = ofdmaphy.Station.Scanner(self, name, [ofdmaphy.Receiver.ReceiverDropIn()])
         self.scanner.rxpProbeName = Config.rxpProbeName
         self.scanner.sinrProbeName = Config.sinrProbeName
 
@@ -99,8 +98,3 @@ for ii in xrange(Config.numMS):
 # register the probes
 import Probes
 Probes.buildProbes(Config, WNS)
-
-# suppress output of (empty) winprost Probes
-from speetcl.probes import ProbeModding
-for (k,v) in WNS.modules.winprost.probes.items():
-    ProbeModding.doIgnore(v)
