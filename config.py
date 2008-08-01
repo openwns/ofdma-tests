@@ -97,4 +97,4 @@ for ii in xrange(Config.numMS):
 
 # register the probes
 import Probes
-Probes.buildProbes(Config, WNS)
+Probes.installDefaultProbes(WNS, Config)
