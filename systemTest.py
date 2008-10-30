@@ -12,7 +12,7 @@ testSuite = pywns.WNSUnit.TestSuite()
 
 # create a system test
 senderTest = pywns.WNSUnit.ProbesTestSuite(sandboxPath = os.path.join('..', '..', '..', 'sandbox'),
-                                           executeable = "wns-core",
+                                           
                                            configFile = 'config.py',
                                            shortDescription = 'Channel Sounder)',
                                            disabled = True,
