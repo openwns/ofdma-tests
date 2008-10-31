@@ -15,7 +15,7 @@ senderTest = pywns.WNSUnit.ProbesTestSuite(sandboxPath = os.path.join('..', '..'
                                            
                                            configFile = 'config.py',
                                            shortDescription = 'Channel Sounder)',
-                                           disabled = True,
+                                           disabled = False,
                                            disabledReason = "PyWNS cannot parse the new table probe bus output",
                                            requireReferenceOutput = False,
                                            maximumRelativeError = 0.0)
