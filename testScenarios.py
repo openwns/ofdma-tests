@@ -1,5 +1,5 @@
-import wns
 import math
+import openwns
 import rise.scenario.Hexagonal
 import rise.scenario.Manhattan
 import rise.scenario.Deployments
@@ -11,7 +11,7 @@ class hexConfig:
                               7  : 4.58,
                               12 : 5.6 } # from Walke, "Mobile Radio Networks"
 
-    center = wns.Position(x=1000,y=1000)
+    center = openwns.Position(x=1000,y=1000)
     numOfCircles = 1
     clusterSize  = 3
     cellRadius   = 80 # [m]

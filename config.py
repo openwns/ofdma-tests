@@ -1,7 +1,8 @@
 import random
 random.seed(42)
-import wns.WNS
-import wns.Node
+import openwns
+import openwns.node
+import openwns.distribution
 import rise.Mobility
 import ofdmaphy.Transmitter
 import ofdmaphy.Receiver
@@ -23,9 +24,9 @@ class Config:
     bsPositions = [ pos for pos,grp in scenario.getPositions()['BS'] ]
     numBS = len(bsPositions)
 
-WNS = wns.WNS.WNS()
+WNS = openwns.Simulator(simulationModel = openwns.node.NodeSimulationModel())
 WNS.maxSimTime = Config.maxSimTime
-WNS.outputStrategy = wns.WNS.OutputStrategy.DELETE
+WNS.outputStrategy = openwns.simulator.OutputStrategy.DELETE
 
 riseConfig = WNS.modules.rise
 riseConfig.debug.transmitter = True
@@ -50,7 +51,7 @@ id = rise.scenario.Propagation.DropInPropagation.getInstance().findId("DropIn")
 rise.scenario.Propagation.DropInPropagation.getInstance().getPair(id, id).shadowing = myShadowing
 
 # Construct simple Sender Node
-class BS(wns.Node.Node):
+class BS(openwns.node.Node):
     mobility = None
     sender = None
 
@@ -65,7 +66,7 @@ class BS(wns.Node.Node):
 
 
 # Construct simple Receiver / Measurer Node
-class MS(wns.Node.Node):
+class MS(openwns.node.Node):
     mobility = None
     scanner = None
 
@@ -83,18 +84,19 @@ class MS(wns.Node.Node):
 stationCounter = 0
 for ii in xrange(Config.numBS):
     noMobility = rise.Mobility.No(Config.bsPositions[ii])
-    WNS.nodes.append( BS("BS" + str(stationCounter), noMobility) )
+    WNS.simulationModel.nodes.append( BS("BS" + str(stationCounter), noMobility) )
     stationCounter += 1
 
 utPositions = []
 for ii in xrange(Config.numMS):
     aMobility = rise.Mobility.BrownianRect([0, 0, Config.xMax, Config.yMax], mobilityObstructions)
-    aMobility.userVelocityDist = wns.Distribution.Fixed(Config.velocity)
+    aMobility.userVelocityDist = openwns.distribution.Fixed(Config.velocity)
     aMobility.moveTimeStep = 1.0
     utPositions.append(aMobility.coords)
-    WNS.nodes.append( MS("MS" + str(stationCounter), aMobility) )
+    WNS.simulationModel.nodes.append( MS("MS" + str(stationCounter), aMobility) )
     stationCounter += 1
 
 # register the probes
 import Probes
 Probes.installDefaultProbes(WNS, Config)
+openwns.setSimulator(WNS)
