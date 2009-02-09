@@ -27,11 +27,11 @@
 ###############################################################################
 
 import os
+import sys
 
-# set path to WNS
-import wnsrc
+# Append the python sub-dir of WNS--main--x.y ...
+sys.path.append(os.path.join('..', '..', '..', 'sandbox', 'default', 'lib', 'python2.4', 'site-packages'))
 
-# ... because the module WNS unit test framework is located there.
 import pywns.WNSUnit
 
 testSuite = pywns.WNSUnit.TestSuite()
