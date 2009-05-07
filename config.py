@@ -45,6 +45,8 @@ class Config:
     rxpProbeName = "Scanner_RxPwr"
     sinrProbeName = "Scanner_SINR"
 
+    xMin = scenario.getXMin()
+    yMin = scenario.getYMin()
     xMax = scenario.getXMax()
     yMax = scenario.getYMax()
     bsPositions = [ pos for pos,grp in scenario.getPositions()['BS'] ]
@@ -115,7 +117,7 @@ for ii in xrange(Config.numBS):
 
 utPositions = []
 for ii in xrange(Config.numMS):
-    aMobility = rise.Mobility.BrownianRect([0, 0, Config.xMax, Config.yMax], mobilityObstructions)
+    aMobility = rise.Mobility.BrownianRect([Config.xMin, Config.yMin, Config.xMax, Config.yMax], mobilityObstructions)
     aMobility.userVelocityDist = openwns.distribution.Fixed(Config.velocity)
     aMobility.moveTimeStep = 1.0
     utPositions.append(aMobility.coords)

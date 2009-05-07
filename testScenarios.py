@@ -31,30 +31,27 @@ import rise.scenario.Manhattan
 import rise.scenario.Deployments
 
 class hexConfig:
-    relInterfererDistance = { 1  : 1,
-                              3  : 3 ,
-                              4  : 3.464,
-                              7  : 4.58,
-                              12 : 5.6 } # from Walke, "Mobile Radio Networks"
-
     center = openwns.Position(x=1000,y=1000)
     numOfCircles = 1
     clusterSize  = 3
     cellRadius   = 80 # [m]
 
     # Distance between co-channel APs!
-    dAP_AP       = cellRadius * math.sqrt(3.0) * relInterfererDistance[clusterSize]
+    dAP_AP       = rise.scenario.Hexagonal.getInterfererDistance(clusterSize,cellRadius)
     dAP_RN       = dAP_AP / 2.0
 
-    numAP        = rise.scenario.Hexagonal.numberOfAccessPointsForHexagonalScenario(numOfCircles)
+    numAP        = rise.scenario.Hexagonal.numberOfBaseStationsForHexagonalScenario(numOfCircles)
     numRN        = 0
 
-hexagon = rise.scenario.Hexagonal.Hexagonal(hexConfig.center,
+hexagon = rise.scenario.Hexagonal.Hexagonal(hexConfig.clusterSize,
+                                            hexConfig.center,
                                             hexConfig.numOfCircles,
+                                            hexConfig.cellRadius,
+                                            hexConfig.numRN,
+                                            0, # numUT
                                             hexConfig.dAP_AP,
                                             hexConfig.dAP_RN,
-                                            hexConfig.cellRadius,
-                                            hexConfig.numRN
+                                            # more parameters: see default list in Hexagonal.py
                                             )
 
 class manhattanConfig:
