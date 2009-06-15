@@ -31,7 +31,7 @@ import rise.scenario.Manhattan
 import rise.scenario.Deployments
 
 class hexConfig:
-    center = openwns.Position(x=1000,y=1000)
+    center = openwns.geometry.position.Position(x=1000,y=1000)
     numOfCircles = 1
     clusterSize  = 3
     cellRadius   = 80 # [m]
