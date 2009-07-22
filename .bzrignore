@@ -6,3 +6,4 @@ stdout.log
 *.junk
 *.csv
 .BACKUP
+mobilityStationPositions
