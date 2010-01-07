@@ -45,10 +45,13 @@ class Config:
     rxpProbeName = "Scanner_RxPwr"
     sinrProbeName = "Scanner_SINR"
 
-    xMin = scenario.getXMin()
-    yMin = scenario.getYMin()
-    xMax = scenario.getXMax()
-    yMax = scenario.getYMax()
+    # Need this to get the scenario size
+    shad = scenario.getShadowing(0, 1)
+
+    xMin = 0
+    yMin = 0
+    xMax = shad.sizeX
+    yMax = shad.sizeY
     bsPositions = [ pos for pos,grp in scenario.getPositions()['BS'] ]
     numBS = len(bsPositions)
 
@@ -69,8 +72,7 @@ ofdmaPhyConfig.systems.append(ofdmaPhySystem)
 
 mobilityObstructions = scenario.getMobilityObstructions()
 
-myShadowing = scenario.getShadowing(scenario = ofdmaPhySystem.Scenario,
-                                    wallAttenuation = 11.8,
+myShadowing = scenario.getShadowing(wallAttenuation = 11.8,
                                     smoothingSteps = 10)
 
 
@@ -89,7 +91,7 @@ class BS(openwns.node.Node):
                                                 "Mobility Component",
                                                 mobility)
         self.mobility.mobility.logger.enabled=False
-        self.sender = ofdmaphy.Station.Sender(self, name, [ofdmaphy.Transmitter.TransmitterDropIn()])
+        self.sender = ofdmaphy.Station.Sender(self, name, [ofdmaphy.Transmitter.TransmitterDropIn()], 5000.0)
         self.sender.txPower = Config.bsPowerPerSubBand
 
 
@@ -104,9 +106,14 @@ class MS(openwns.node.Node):
                                                 "Mobility Component",
                                                 mobility)
         self.mobility.mobility.logger.enabled=False
-        self.scanner = ofdmaphy.Station.Scanner(self, name, [ofdmaphy.Receiver.ReceiverDropIn()])
+        self.scanner = ofdmaphy.Station.Scanner(self, name, [ofdmaphy.Receiver.ReceiverDropIn()], 5000.0)
         self.scanner.rxpProbeName = Config.rxpProbeName
         self.scanner.sinrProbeName = Config.sinrProbeName
+        self.scanner.pathlossProbeName = "Pathloss"
+        self.scanner.maxRxpProbeName = "MaxRxPower"
+        self.scanner.maxSINRProbeName = "MaxSINR"
+        self.scanner.minPathlossProbeName = "MinPathloss"
+        self.scanner.distanceProbeName = "Distance"
 
 
 stationCounter = 0

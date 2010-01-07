@@ -36,17 +36,60 @@ import pywns.WNSUnit
 
 testSuite = pywns.WNSUnit.TestSuite()
 
-# create a system test
-senderTest = pywns.WNSUnit.ProbesTestSuite(sandboxPath = os.path.join('..', '..', '..', 'sandbox'),
-                                           
+manhattanTest = pywns.WNSUnit.ProbesTestSuite(sandboxPath = os.path.join('..', '..', '..', 'sandbox'),
                                            configFile = 'config.py',
-                                           shortDescription = 'Channel Sounder)',
+                                           shortDescription = 'Manhattan Scenario',
                                            disabled = False,
-                                           disabledReason = "PyWNS cannot parse the new table probe bus output",
+                                           disabledReason = "",
                                            requireReferenceOutput = False,
                                            maximumRelativeError = 0.0)
 
-testSuite.addTest(senderTest)
+ituInHTest = pywns.WNSUnit.ProbesTestSuite(sandboxPath = os.path.join('..', '..', '..', 'sandbox'),
+                                           configFile = 'configITUInH.py',
+                                           shortDescription = 'Calibration for InH',
+                                           disabled = False,
+                                           disabledReason = "",
+                                           requireReferenceOutput = True,
+                                           maximumRelativeError = 0.0)
+
+ituUMiTest = pywns.WNSUnit.ProbesTestSuite(sandboxPath = os.path.join('..', '..', '..', 'sandbox'),
+                                           configFile = 'configITUUMi.py',
+                                           shortDescription = 'Calibration for UMi',
+                                           disabled = False,
+                                           disabledReason = "",
+                                           requireReferenceOutput = True,
+                                           maximumRelativeError = 0.0)
+
+ituUMaTest = pywns.WNSUnit.ProbesTestSuite(sandboxPath = os.path.join('..', '..', '..', 'sandbox'),
+                                           configFile = 'configITUUMa.py',
+                                           shortDescription = 'Calibration for UMa',
+                                           disabled = False,
+                                           disabledReason = "",
+                                           requireReferenceOutput = True,
+                                           maximumRelativeError = 0.0)
+
+ituRMaTest = pywns.WNSUnit.ProbesTestSuite(sandboxPath = os.path.join('..', '..', '..', 'sandbox'),
+                                           configFile = 'configITURMa.py',
+                                           shortDescription = 'Calibration for RMa',
+                                           disabled = False,
+                                           disabledReason = "",
+                                           requireReferenceOutput = True,
+                                           maximumRelativeError = 0.0)
+
+ituSMaTest = pywns.WNSUnit.ProbesTestSuite(sandboxPath = os.path.join('..', '..', '..', 'sandbox'),
+                                           configFile = 'configITUSMa.py',
+                                           shortDescription = 'Calibration for SMa',
+                                           disabled = False,
+                                           disabledReason = "",
+                                           requireReferenceOutput = True,
+                                           maximumRelativeError = 0.0)
+
+testSuite.addTest(manhattanTest)
+testSuite.addTest(ituInHTest)
+testSuite.addTest(ituUMiTest)
+testSuite.addTest(ituUMaTest)
+testSuite.addTest(ituRMaTest)
+testSuite.addTest(ituSMaTest)
 
 if __name__ == '__main__':
     # This is only evaluated if the script is called by hand
