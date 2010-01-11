@@ -50,8 +50,8 @@ class Config:
 
     xMin = 0
     yMin = 0
-    xMax = shad.sizeX
-    yMax = shad.sizeY
+    xMax = scenario.sizeX
+    yMax = scenario.sizeY
     bsPositions = [ pos for pos,grp in scenario.getPositions()['BS'] ]
     numBS = len(bsPositions)
 
