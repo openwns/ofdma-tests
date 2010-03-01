@@ -38,14 +38,21 @@ class config:
     centerFrequency = 3400.0
     bsTransmitPower = "24.0 dBm"
 
-bsPlacer = scenarios.ituM2135.placer.IndoorHotspotBSPlacer()
-bsAntennaCreator = scenarios.ituM2135.IndoorHotspotAntennaCreator()
-uePlacer = scenarios.placer.NonePlacer()
+#bsPlacer = scenarios.ituM2135.placer.IndoorHotspotBSPlacer()
+#bsAntennaCreator = scenarios.ituM2135.IndoorHotspotAntennaCreator()
+#uePlacer = scenarios.placer.NonePlacer()
 
-scenario = scenarios.builders.CreatorPlacerBuilder(
+#scenario = scenarios.builders.CreatorPlacerBuilder(
+#    nodecreators.BSCreator(config.bsTransmitPower, config.centerFrequency),
+#    bsPlacer, bsAntennaCreator,
+#    nodecreators.UECreator(config.centerFrequency), uePlacer)
+
+scenario = scenarios.builders.CreatorPlacerBuilderIndoorHotspot(
     nodecreators.BSCreator(config.bsTransmitPower, config.centerFrequency),
-    bsPlacer, bsAntennaCreator,
-    nodecreators.UECreator(config.centerFrequency), uePlacer)
+    nodecreators.UECreator(config.centerFrequency),
+    numberOfNodes = 0)
+
+
 
 ueCreator = nodecreators.UECreator(config.centerFrequency)
 ue = ueCreator.create()
