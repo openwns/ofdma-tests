@@ -33,20 +33,12 @@ import scenarios.ituM2135
 import openwns.geometry.position
 import rise.scenario.Propagation
 
-#bsPlacer = scenarios.ituM2135.SuburbanMacroBSPlacer(numberOfCircles = 1)
-#uePlacer = scenarios.placer.CircularPlacer(numberOfNodes = 0, radius = 0.0)
-
-#for azimuth in [30.0, 150.0, 270.0]:
-#    azimuth = 2*3.14 * azimuth / 360.0
-#    bsAntennaCreator = scenarios.ituM2135.SuburbanMacroAntennaCreator(azimuth)
-
-#    scenario = scenarios.builders.CreatorPlacerBuilder(nodecreators.BSCreator("49.0 dBm", 2000.0), bsPlacer, bsAntennaCreator, nodecreators.UECreator(2000.0), uePlacer)
 scenario = scenarios.builders.CreatorPlacerBuilderSuburbanMacro(
     nodecreators.BSCreator("49.0 dBm", 2000.0), 
     nodecreators.UECreator(2000.0), 
-    sectorization=True, 
-    numberOfCircles=1,
-    numberOfNodes=0)
+    sectorization = True, 
+    numberOfCircles = 1,
+    numberOfNodes = 0)
 
 sm = openwns.simulator.getSimulator().rng.seed = 2714
 sm = openwns.simulator.getSimulator().simulationModel
