@@ -50,7 +50,7 @@ ituInHTest = pywns.WNSUnit.ProbesTestSuite(sandboxPath = os.path.join('..', '..'
                                            disabled = False,
                                            disabledReason = "",
                                            requireReferenceOutput = True,
-                                           maximumRelativeError = 0.0)
+                                           maximumRelativeError = 0.06)
 
 ituUMiTest = pywns.WNSUnit.ProbesTestSuite(sandboxPath = os.path.join('..', '..', '..', 'sandbox'),
                                            configFile = 'configITUUMi.py',
@@ -58,7 +58,7 @@ ituUMiTest = pywns.WNSUnit.ProbesTestSuite(sandboxPath = os.path.join('..', '..'
                                            disabled = False,
                                            disabledReason = "",
                                            requireReferenceOutput = True,
-                                           maximumRelativeError = 0.0)
+                                           maximumRelativeError = 0.06)
 
 ituUMaTest = pywns.WNSUnit.ProbesTestSuite(sandboxPath = os.path.join('..', '..', '..', 'sandbox'),
                                            configFile = 'configITUUMa.py',
@@ -66,7 +66,7 @@ ituUMaTest = pywns.WNSUnit.ProbesTestSuite(sandboxPath = os.path.join('..', '..'
                                            disabled = False,
                                            disabledReason = "",
                                            requireReferenceOutput = True,
-                                           maximumRelativeError = 0.0)
+                                           maximumRelativeError = 0.06)
 
 ituRMaTest = pywns.WNSUnit.ProbesTestSuite(sandboxPath = os.path.join('..', '..', '..', 'sandbox'),
                                            configFile = 'configITURMa.py',
@@ -74,7 +74,7 @@ ituRMaTest = pywns.WNSUnit.ProbesTestSuite(sandboxPath = os.path.join('..', '..'
                                            disabled = False,
                                            disabledReason = "",
                                            requireReferenceOutput = True,
-                                           maximumRelativeError = 0.0)
+                                           maximumRelativeError = 0.06)
 
 ituSMaTest = pywns.WNSUnit.ProbesTestSuite(sandboxPath = os.path.join('..', '..', '..', 'sandbox'),
                                            configFile = 'configITUSMa.py',
@@ -82,7 +82,7 @@ ituSMaTest = pywns.WNSUnit.ProbesTestSuite(sandboxPath = os.path.join('..', '..'
                                            disabled = False,
                                            disabledReason = "",
                                            requireReferenceOutput = True,
-                                           maximumRelativeError = 0.0)
+                                           maximumRelativeError = 0.06)
 
 testSuite.addTest(manhattanTest)
 testSuite.addTest(ituInHTest)
