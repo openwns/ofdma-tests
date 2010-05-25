@@ -42,8 +42,8 @@ scenario = scenarios.builders.CreatorPlacerBuilderRuralMacro(
 
 sm = openwns.simulator.getSimulator().rng.seed = 2714
 sm = openwns.simulator.getSimulator().simulationModel
-bsIDs = [node.nodeID for node in sm.getNodesByType("BS")]
-ueIDs = [node.nodeID for node in sm.getNodesByType("UE")]
+bsIDs = [node.nodeID for node in sm.getNodesByProperty("Type", "BS")]
+ueIDs = [node.nodeID for node in sm.getNodesByProperty("Type", "UE")]
 
 #for i in xrange(200):
 ueCreator = nodecreators.UECreator(800.0)
@@ -51,7 +51,7 @@ ue = ueCreator.create()
 ue.setPosition(openwns.geometry.position.Position(1000.0, 1000.0, 0.0))
 openwns.simulator.getSimulator().simulationModel.nodes.append(ue)
 
-for ue in  sm.getNodesByType("UE"):
+for ue in  sm.getNodesByProperty("Type", "UE"):
     ue.mobility.mobility = scenarios.placer.hexagonal.createAreaScanMobility(100, 866.0, 35.0,  openwns.geometry.position.Position(5000.0, 5000.0, 0.0), 0.0)
 
 id = rise.scenario.Propagation.DropInPropagation.getInstance().findId("DropIn")

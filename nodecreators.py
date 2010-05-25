@@ -38,15 +38,13 @@ class BSCreator(scenarios.interfaces.INodeCreator):
 
         def __init__(self, transmitPower, centerFrequency):
             openwns.node.Node.__init__(self, "BS")
+            self.setProperty("Type", "BS")
             self.name += str(self.nodeID)
 
             #self.setPosition(openwns.geometry.position.Position(0.0, 0.0, 0.0))
             #self.mobility.mobility.logger.enabled=False
             self.sender = ofdmaphy.Station.Sender(self, "BS", [ofdmaphy.Transmitter.TransmitterDropIn()], centerFrequency)
             self.sender.txPower = transmitPower
-
-        def getNodeType(self):
-            return "BS"
 
         def getPosition(self):
             self.mobility.getCoords()
@@ -74,6 +72,8 @@ class UECreator(scenarios.interfaces.INodeCreator):
 
         def __init__(self, centerFrequency):
             openwns.node.Node.__init__(self, "UE")
+            self.setProperty("Type", "UE")
+            
             self.name += str(self.nodeID)
             self.scanner = ofdmaphy.Station.Scanner(self, "UE" + str(self.nodeID), [ofdmaphy.Receiver.ReceiverDropIn()],  centerFrequency)
             self.scanner.receiver[0].receiverNoiseFigure = "7 dB"
@@ -87,9 +87,6 @@ class UECreator(scenarios.interfaces.INodeCreator):
 
         def setAntenna(self, antenna):
             pass
-
-        def getNodeType(self):
-            return "UE"
 
         def getPosition(self):
             self.mobility.getCoords()
@@ -111,6 +108,7 @@ class MS(openwns.node.Node):
 
     def __init__(self, name, mobility):
         super(MS, self).__init__(name)
+        self.setProperty("Type", "MS")
         self.mobility = rise.Mobility.Component(self,
                                                 "Mobility Component",
                                                 mobility)
@@ -118,6 +116,5 @@ class MS(openwns.node.Node):
         self.scanner = ofdmaphy.Station.Scanner(self, name, [ofdmaphy.Receiver.ReceiverDropIn()])
         self.scanner.rxpProbeName = Config.rxpProbeName
         self.scanner.sinrProbeName = Config.sinrProbeName
-
 
 
