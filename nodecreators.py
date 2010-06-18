@@ -56,6 +56,10 @@ class BSCreator(scenarios.interfaces.INodeCreator):
         def setAntenna(self, antenna):
             self.sender.antennas = [antenna]
 
+        def setChannelModel(self, channelmodel):
+            ## todo later
+            pass
+
     def __init__(self, transmitPower, centerFrequency):
         ofdmaSystem = ofdmaphy.OFDMAPhy.OFDMASystem("OFDMA")
         openwns.simulator.OpenWNS.modules.ofdmaPhy.updateSystem(ofdmaSystem)
@@ -94,6 +98,11 @@ class UECreator(scenarios.interfaces.INodeCreator):
         def setPosition(self, position):
             print "Setting UE position to %f, %f, %f" % (position.x, position.y, position.z)
             self.mobility = rise.Mobility.Component(node = self, name = "Mobility UE"+str(self.nodeID), mobility = rise.Mobility.No(position))
+
+
+        def setChannelModel(self, channelmodel):
+            ## todo later
+            pass
 
     def __init__(self, centerFrequency):
         self.centerFrequency = centerFrequency
