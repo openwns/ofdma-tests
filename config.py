@@ -65,7 +65,7 @@ riseConfig.debug.receiver = True
 riseConfig.debug.main = True
 
 ofdmaPhyConfig = WNS.modules.ofdmaPhy
-ofdmaPhySystem = ofdmaphy.OFDMAPhy.OFDMASystem('OFDMA')
+ofdmaPhySystem = ofdmaphy.OFDMAPhy.OFDMASystem('ofdma')
 ofdmaPhySystem.Scenario = scenario
 
 ofdmaPhyConfig.systems.append(ofdmaPhySystem)

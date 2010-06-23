@@ -61,7 +61,7 @@ class BSCreator(scenarios.interfaces.INodeCreator):
             pass
 
     def __init__(self, transmitPower, centerFrequency):
-        ofdmaSystem = ofdmaphy.OFDMAPhy.OFDMASystem("OFDMA")
+        ofdmaSystem = ofdmaphy.OFDMAPhy.OFDMASystem("ofdma")
         openwns.simulator.OpenWNS.modules.ofdmaPhy.updateSystem(ofdmaSystem)
 
         self.transmitPower = transmitPower
