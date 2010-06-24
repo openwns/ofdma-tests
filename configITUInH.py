@@ -57,8 +57,6 @@ sm = openwns.simulator.getSimulator().simulationModel
 for ue in  sm.getNodesByProperty("Type", "UE"):
     ue.mobility.mobility = scenarios.placer.rectangular.createAreaScanMobility(120, 50, 120.0, 50.0, openwns.geometry.position.Position(1000.0, 1000.0, 0.0))
 
-pid = rise.scenario.Propagation.DropInPropagation.getInstance().findId("DropIn")
-rise.scenario.Propagation.DropInPropagation.getInstance().getPair(pid, pid).pathloss = rise.scenario.Pathloss.ITUInH()
 
 bsIDs = [node.nodeID for node in sm.getNodesByProperty("Type", "BS")]
 ueIDs = [node.nodeID for node in sm.getNodesByProperty("Type", "UE")]

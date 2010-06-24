@@ -54,8 +54,6 @@ openwns.simulator.getSimulator().simulationModel.nodes.append(ue)
 for ue in  sm.getNodesByProperty("Type", "UE"):
     ue.mobility.mobility = scenarios.placer.hexagonal.createAreaScanMobility(50, 100.0, 10.0,  openwns.geometry.position.Position(1000.0, 1000.0, 0.0), 0.0)
 
-id = rise.scenario.Propagation.DropInPropagation.getInstance().findId("DropIn")
-rise.scenario.Propagation.DropInPropagation.getInstance().getPair(id, id).pathloss = rise.scenario.Pathloss.ITUUMi()
 
 import Probes
 Probes.installDefaultProbesUMi(openwns.simulator.getSimulator(), xrange(len(bsIDs)), 650.0, 1350.0, 650.0, 1350.0)

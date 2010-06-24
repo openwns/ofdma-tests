@@ -31,6 +31,7 @@ import scenarios.interfaces
 import openwns.node
 import rise.Mobility
 import openwns.geometry.position
+import rise.scenario.Propagation
 
 class BSCreator(scenarios.interfaces.INodeCreator):
 
@@ -57,12 +58,15 @@ class BSCreator(scenarios.interfaces.INodeCreator):
             self.sender.antennas = [antenna]
 
         def setChannelModel(self, channelmodel):
-            ## todo later
-            pass
+
+            propagationConfigPairs = [("DropIn","DropIn")]
+            for pair in propagationConfigPairs:
+                self.sender.transmitter[0].propagation.setPair(pair[0],pair[1]).pathloss = channelmodel.pathloss
+                self.sender.transmitter[0].propagation.setPair(pair[0],pair[1]).shadowing = channelmodel.shadowing
+                self.sender.transmitter[0].propagation.setPair(pair[0],pair[1]).fastFading = channelmodel. fastFading
+
 
     def __init__(self, transmitPower, centerFrequency):
-        ofdmaSystem = ofdmaphy.OFDMAPhy.OFDMASystem("ofdma")
-        openwns.simulator.OpenWNS.modules.ofdmaPhy.updateSystem(ofdmaSystem)
 
         self.transmitPower = transmitPower
         self.centerFrequency = centerFrequency
@@ -101,8 +105,14 @@ class UECreator(scenarios.interfaces.INodeCreator):
 
 
         def setChannelModel(self, channelmodel):
-            ## todo later
-            pass
+            propagationConfigPairs = [("DropIn","DropIn")]
+            for pair in propagationConfigPairs:
+
+                self.scanner.receiver[0].propagation.setPair("DropIn","DropIn").pathloss = channelmodel.pathloss
+                self.scanner.receiver[0].propagation.setPair("DropIn","DropIn").shadowing = channelmodel.shadowing
+                self.scanner.receiver[0].propagation.setPair("DropIn","DropIn").fastFading = channelmodel. fastFading
+
+
 
     def __init__(self, centerFrequency):
         self.centerFrequency = centerFrequency
