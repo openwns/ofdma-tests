@@ -84,12 +84,21 @@ ituSMaTest = pywns.WNSUnit.ProbesTestSuite(sandboxPath = os.path.join('..', '..'
                                            requireReferenceOutput = True,
                                            maximumRelativeError = 0.06)
 
+glueTest = pywns.WNSUnit.ProbesTestSuite(sandboxPath = os.path.join('..', '..', '..', 'sandbox'),
+                                           configFile = 'configGlue.py',
+                                           shortDescription = 'Connect OFDMA Phy to Glue',
+                                           disabled = False,
+                                           disabledReason = "",
+                                           requireReferenceOutput = False,
+                                           maximumRelativeError = 0.0)
+
 testSuite.addTest(manhattanTest)
 testSuite.addTest(ituInHTest)
 testSuite.addTest(ituUMiTest)
 testSuite.addTest(ituUMaTest)
 testSuite.addTest(ituRMaTest)
 testSuite.addTest(ituSMaTest)
+testSuite.addTest(glueTest)
 
 if __name__ == '__main__':
     # This is only evaluated if the script is called by hand
