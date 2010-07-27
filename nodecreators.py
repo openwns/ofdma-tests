@@ -57,13 +57,14 @@ class BSCreator(scenarios.interfaces.INodeCreator):
         def setAntenna(self, antenna):
             self.sender.antennas = [antenna]
 
-        def setChannelModel(self, channelmodel):
-
-            propagationConfigPairs = [("DropIn","DropIn")]
-            for pair in propagationConfigPairs:
-                self.sender.transmitter[0].propagation.setPair(pair[0],pair[1]).pathloss = channelmodel.pathloss
-                self.sender.transmitter[0].propagation.setPair(pair[0],pair[1]).shadowing = channelmodel.shadowing
-                self.sender.transmitter[0].propagation.setPair(pair[0],pair[1]).fastFading = channelmodel. fastFading
+        def setChannelModel(self, channelmodelConfigurations):
+            for entry in channelmodelConfigurations: 
+                self.sender.transmitter[0].propagation.setPair(
+                        entry.transceiverPair[0],entry.transceiverPair[1]).pathloss = entry.channelmodel.pathloss
+                self.sender.transmitter[0].propagation.setPair(
+                        entry.transceiverPair[0],entry.transceiverPair[1]).shadowing = entry.channelmodel.shadowing
+                self.sender.transmitter[0].propagation.setPair(
+                        entry.transceiverPair[0],entry.transceiverPair[1]).fastFading = entry.channelmodel. fastFading
 
 
     def __init__(self, transmitPower, centerFrequency):
@@ -104,13 +105,15 @@ class UECreator(scenarios.interfaces.INodeCreator):
             self.mobility = rise.Mobility.Component(node = self, name = "Mobility UE"+str(self.nodeID), mobility = rise.Mobility.No(position))
 
 
-        def setChannelModel(self, channelmodel):
-            propagationConfigPairs = [("DropIn","DropIn")]
-            for pair in propagationConfigPairs:
+        def setChannelModel(self, channelmodelConfigurations):
+            for entry in channelmodelConfigurations: 
 
-                self.scanner.receiver[0].propagation.setPair("DropIn","DropIn").pathloss = channelmodel.pathloss
-                self.scanner.receiver[0].propagation.setPair("DropIn","DropIn").shadowing = channelmodel.shadowing
-                self.scanner.receiver[0].propagation.setPair("DropIn","DropIn").fastFading = channelmodel. fastFading
+                self.scanner.receiver[0].propagation.setPair(
+                        entry.transceiverPair[0],entry.transceiverPair[1]).pathloss = entry.channelmodel.pathloss
+                self.scanner.receiver[0].propagation.setPair(
+                        entry.transceiverPair[0],entry.transceiverPair[1]).shadowing = entry.channelmodel.shadowing
+                self.scanner.receiver[0].propagation.setPair(
+                        entry.transceiverPair[0],entry.transceiverPair[1]).fastFading = entry.channelmodel. fastFading
 
 
 

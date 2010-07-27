@@ -45,7 +45,6 @@ scenario = scenarios.builders.CreatorPlacerBuilderIndoorHotspot(
     numberOfNodes = 0)
 
 
-
 ueCreator = nodecreators.UECreator(config.centerFrequency)
 ue = ueCreator.create()
 ue.setPosition(openwns.geometry.position.Position(1000.0, 1000.0, 0.0))
