@@ -26,7 +26,7 @@
 ###############################################################################
 from openwns.evaluation import *
 
-def installDefaultProbesInH(WNS, bsIds, xMin, xMax, yMin, yMax):
+def installDefaultProbesInH(WNS):
 
     node = openwns.evaluation.createSourceNode(WNS, "MaxRxPower")
     node.appendChildren(PDF(name = "RxPower",
@@ -50,7 +50,7 @@ def installDefaultProbesInH(WNS, bsIds, xMin, xMax, yMin, yMax):
                            maxXValue = -40,
                            resolution = 130))
 
-def installDefaultProbesUMi(WNS, bsIds, xMin, xMax, yMin, yMax):
+def installDefaultProbesUMi(WNS):
 
     node = openwns.evaluation.createSourceNode(WNS, "MaxRxPower")
     node.appendChildren(PDF(name = "RxPower",
@@ -75,7 +75,7 @@ def installDefaultProbesUMi(WNS, bsIds, xMin, xMax, yMin, yMax):
                            resolution = 130))
 
 
-def installDefaultProbesUMa(WNS, bsIds, xMin, xMax, yMin, yMax):
+def installDefaultProbesUMa(WNS):
 
     node = openwns.evaluation.createSourceNode(WNS, "MaxRxPower")
     node.appendChildren(PDF(name = "RxPower",
@@ -99,7 +99,7 @@ def installDefaultProbesUMa(WNS, bsIds, xMin, xMax, yMin, yMax):
                            maxXValue = -50,
                            resolution = 130))
 
-def installDefaultProbesRMa(WNS, bsIds, xMin, xMax, yMin, yMax):
+def installDefaultProbesRMa(WNS):
 
     node = openwns.evaluation.createSourceNode(WNS, "MaxRxPower")
     node.appendChildren(PDF(name = "RxPower",
@@ -123,7 +123,7 @@ def installDefaultProbesRMa(WNS, bsIds, xMin, xMax, yMin, yMax):
                            maxXValue = -50,
                            resolution = 130))
 
-def installDefaultProbesSMa(WNS, bsIds, xMin, xMax, yMin, yMax):
+def installDefaultProbesSMa(WNS):
 
     node = openwns.evaluation.createSourceNode(WNS, "MaxRxPower")
     node.appendChildren(PDF(name = "RxPower",

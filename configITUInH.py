@@ -44,24 +44,17 @@ scenario = scenarios.builders.CreatorPlacerBuilderIndoorHotspot(
     nodecreators.UECreator(config.centerFrequency),
     numberOfNodes = 0)
 
+sm = openwns.simulator.getSimulator().rng.seed = 2714
 
 ueCreator = nodecreators.UECreator(config.centerFrequency)
 ue = ueCreator.create()
 ue.setPosition(openwns.geometry.position.Position(1000.0, 1000.0, 0.0))
+ue.mobility.mobility = scenarios.placer.rectangular.createAreaScanMobility(
+    120, 50, 120.0, 50.0, openwns.geometry.position.Position(1000.0, 1000.0, 0.0))
 openwns.simulator.getSimulator().simulationModel.nodes.append(ue)
 
-sm = openwns.simulator.getSimulator().rng.seed = 2714
-sm = openwns.simulator.getSimulator().simulationModel
-
-for ue in  sm.getNodesByProperty("Type", "UE"):
-    ue.mobility.mobility = scenarios.placer.rectangular.createAreaScanMobility(120, 50, 120.0, 50.0, openwns.geometry.position.Position(1000.0, 1000.0, 0.0))
-
-
-bsIDs = [node.nodeID for node in sm.getNodesByProperty("Type", "BS")]
-ueIDs = [node.nodeID for node in sm.getNodesByProperty("Type", "UE")]
-
 import Probes
-Probes.installDefaultProbesInH(openwns.simulator.getSimulator(), xrange(len(bsIDs)), 900.0, 1100.0, 900.0, 1100.0)
+Probes.installDefaultProbesInH(openwns.simulator.getSimulator())
 
 openwns.simulator.getSimulator().maxSimTime = 1000.0
 openwns.simulator.getSimulator().outputStrategy = openwns.simulator.OutputStrategy.DELETE

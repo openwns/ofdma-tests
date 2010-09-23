@@ -33,6 +33,8 @@ import scenarios.ituM2135
 import openwns.geometry.position
 import rise.scenario.Propagation
 
+# begin example "ofdmascanner.uma"
+
 scenario = scenarios.builders.CreatorPlacerBuilderUrbanMacro(
     nodecreators.BSCreator("49.0 dBm", 2000.0), 
     nodecreators.UECreator(2000.0), 
@@ -40,25 +42,31 @@ scenario = scenarios.builders.CreatorPlacerBuilderUrbanMacro(
     numberOfCircles = 1,
     numberOfNodes = 0)
 
-sm = openwns.simulator.getSimulator().rng.seed = 2714
-sm = openwns.simulator.getSimulator().simulationModel
-bsIDs = [node.nodeID for node in sm.getNodesByProperty("Type", "BS")]
-ueIDs = [node.nodeID for node in sm.getNodesByProperty("Type", "UE")]
+# end example
 
-#for i in xrange(200):
+
+# begin example "ofdmascanner.uma.setup"
+
+sm = openwns.simulator.getSimulator().rng.seed = 2714
+
 ueCreator = nodecreators.UECreator(2000.0)
 ue = ueCreator.create()
 ue.setPosition(openwns.geometry.position.Position(1000.0, 1000.0, 0.0))
+ue.mobility.mobility = scenarios.placer.hexagonal.createAreaScanMobility(
+    50, 250.0, 25.0, openwns.geometry.position.Position(1000.0, 1000.0, 0.0), 0.0)
 openwns.simulator.getSimulator().simulationModel.nodes.append(ue)
 
-for ue in  sm.getNodesByProperty("Type", "UE"):
-    ue.mobility.mobility = scenarios.placer.hexagonal.createAreaScanMobility(50, 250.0, 25.0, openwns.geometry.position.Position(1000.0, 1000.0, 0.0), 0.0)
+#end example
+
+# begin example "ofdmascanner.uma.final"
 
 import Probes
-Probes.installDefaultProbesUMa(openwns.simulator.getSimulator(), xrange(len(bsIDs)), 650.0, 1350.0, 650.0, 1350.0)
+Probes.installDefaultProbesUMa(openwns.simulator.getSimulator())
 
 openwns.simulator.getSimulator().maxSimTime = 1000.0
 openwns.simulator.getSimulator().outputStrategy = openwns.simulator.OutputStrategy.DELETE
+
+#end example
 
 def plotMaps(simulator):
     import glob
