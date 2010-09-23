@@ -56,7 +56,7 @@ ue.mobility.mobility = scenarios.placer.hexagonal.createAreaScanMobility(
     50, 250.0, 25.0, openwns.geometry.position.Position(1000.0, 1000.0, 0.0), 0.0)
 openwns.simulator.getSimulator().simulationModel.nodes.append(ue)
 
-#end example
+# end example
 
 # begin example "ofdmascanner.uma.final"
 
@@ -66,7 +66,7 @@ Probes.installDefaultProbesUMa(openwns.simulator.getSimulator())
 openwns.simulator.getSimulator().maxSimTime = 1000.0
 openwns.simulator.getSimulator().outputStrategy = openwns.simulator.OutputStrategy.DELETE
 
-#end example
+# end example
 
 def plotMaps(simulator):
     import glob
