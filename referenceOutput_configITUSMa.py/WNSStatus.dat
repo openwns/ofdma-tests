@@ -1,8 +1,8 @@
         WNS
        =====
                  Status: Simulation terminated successfully
-                     Start: Sat Sep 25 14:11:26 2010
-                       Now: Sat Sep 25 14:11:57 2010
+                     Start: Mon Sep 27 23:00:11 2010
+                       Now: Mon Sep 27 23:00:42 2010
                   Duration:             0:00:31
 
               Simulation time: 1000
@@ -19,26 +19,26 @@ The following output is read from /proc/self/status
 ----------------------------------------------------------
 Name:	openwns
 State:	R (running)
-Tgid:	12294
-Pid:	12294
-PPid:	12293
+Tgid:	9653
+Pid:	9653
+PPid:	9652
 TracerPid:	0
 Uid:	2615	2615	2615	2615
 Gid:	1355	1355	1355	1355
 FDSize:	64
 Groups:	1355 
-VmPeak:	   78868 kB
-VmSize:	   77844 kB
+VmPeak:	   77848 kB
+VmSize:	   77848 kB
 VmLck:	       0 kB
-VmHWM:	   33432 kB
-VmRSS:	   33432 kB
+VmHWM:	   32788 kB
+VmRSS:	   32788 kB
 VmData:	   27232 kB
 VmStk:	     264 kB
 VmExe:	      16 kB
-VmLib:	   48064 kB
-VmPTE:	     144 kB
+VmLib:	   48068 kB
+VmPTE:	     140 kB
 Threads:	2
-SigQ:	0/16382
+SigQ:	1/16382
 SigPnd:	0000000000000000
 ShdPnd:	0000000000000000
 SigBlk:	0000000000000000
@@ -50,7 +50,7 @@ CapEff:	0000000000000000
 CapBnd:	ffffffffffffffff
 Cpus_allowed:	ff
 Cpus_allowed_list:	0-7
-Mems_allowed:	00000000,0000000f
-Mems_allowed_list:	0-3
-voluntary_ctxt_switches:	209
-nonvoluntary_ctxt_switches:	285
+Mems_allowed:	00000000,00000001
+Mems_allowed_list:	0
+voluntary_ctxt_switches:	1128
+nonvoluntary_ctxt_switches:	2950
