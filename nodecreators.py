@@ -93,6 +93,7 @@ class UECreator(scenarios.interfaces.INodeCreator):
             self.scanner.maxSINRProbeName = "MaxSINR"
             self.scanner.minPathlossProbeName = "MinPathloss"
             self.scanner.distanceProbeName = "Distance"
+            self.scanner.margin = "1.0 dB"
 
         def setAntenna(self, antenna):
             pass
