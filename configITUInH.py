@@ -39,7 +39,7 @@ class config:
     bsTransmitPower = "24.0 dBm"
 
 
-scenario = scenarios.builders.CreatorPlacerBuilderIndoorHotspot(
+scenario = scenarios.ituM2135.CreatorPlacerBuilderIndoorHotspot(
     nodecreators.BSCreator(config.bsTransmitPower, config.centerFrequency),
     nodecreators.UECreator(config.centerFrequency),
     numberOfNodes = 0)

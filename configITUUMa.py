@@ -35,7 +35,7 @@ import rise.scenario.Propagation
 
 # begin example "ofdmascanner.uma"
 
-scenario = scenarios.builders.CreatorPlacerBuilderUrbanMacro(
+scenario = scenarios.ituM2135.CreatorPlacerBuilderUrbanMacro(
     nodecreators.BSCreator("49.0 dBm", 2000.0), 
     nodecreators.UECreator(2000.0), 
     sectorization = True, 

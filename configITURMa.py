@@ -33,7 +33,7 @@ import scenarios.ituM2135
 import openwns.geometry.position
 import rise.scenario.Propagation
 
-scenario = scenarios.builders.CreatorPlacerBuilderRuralMacro(
+scenario = scenarios.ituM2135.CreatorPlacerBuilderRuralMacro(
     nodecreators.BSCreator("49.0 dBm", 800.0), 
     nodecreators.UECreator(800.0), 
     sectorization = True, 
