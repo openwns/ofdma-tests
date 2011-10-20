@@ -48,7 +48,7 @@ class BSCreator(scenarios.interfaces.INodeCreator):
             self.sender.txPower = transmitPower
 
         def getPosition(self):
-            self.mobility.getCoords()
+            return self.mobility.mobility.getCoords()
 
         def setPosition(self, position):
             print "Setting BS position to %f, %f, %f" % (position.x, position.y, position.z)
@@ -99,7 +99,7 @@ class UECreator(scenarios.interfaces.INodeCreator):
             pass
 
         def getPosition(self):
-            self.mobility.getCoords()
+            return self.mobility.mobility.getCoords()
 
         def setPosition(self, position):
             print "Setting UE position to %f, %f, %f" % (position.x, position.y, position.z)
