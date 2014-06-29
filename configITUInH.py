@@ -59,9 +59,13 @@ Probes.installDefaultProbesInH(openwns.simulator.getSimulator())
 openwns.simulator.getSimulator().maxSimTime = 1000.0
 openwns.simulator.getSimulator().outputStrategy = openwns.simulator.OutputStrategy.DELETE
 
+try:
+    from scenarios.plotting.Plotting import *
+except:
+    print "pylab does not exist"
+
 def plotMaps(simulator):
     import glob
-    from scenarios.plotting.Plotting import *
     files = glob.glob("output/*.m")
     files = [f.replace(".m", "") for f in files]
     files = [f.split("_") for f in files]
